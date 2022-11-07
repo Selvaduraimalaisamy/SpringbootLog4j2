@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+
+
+-<Properties>
+
+<Property name="log-path">D:\Logs/</Property>
+
+</Properties>
+
+
+-<Appenders>
+
+<!-- console appender -->
+
+
+
+-<Console name="console-log" target="SYSTEM_OUT">
+
+<PatternLayout pattern="%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n"/>
+
+</Console>
+
+<!-- file appender -->
+
+
+
+-<RollingFile name="trace" filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/trace.log">
+
+<!-- log pattern -->
+
+
+
+-<PatternLayout>
+
+<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+
+</PatternLayout>
+
+<!-- set file size policy -->
+
+
+
+-<Policies>
+
+<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+
+<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+
+
+</Policies>
+
+<DefaultRolloverStrategy max="500"/>
+
+</RollingFile>
+
+
+-<RollingFile name="report" filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/trace.log">
+
+<!-- log pattern -->
+
+
+
+-<PatternLayout>
+
+<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+
+</PatternLayout>
+
+<!-- set file size policy -->
+
+
+
+-<Policies>
+
+<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+
+<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+
+
+</Policies>
+
+<DefaultRolloverStrategy max="500"/>
+
+</RollingFile>
+
+<!-- file appender -->
+
+
+
+-<RollingFile name="Arith" filePattern="${log-path}/Arith-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/Arith.log">
+
+<!-- log pattern -->
+
+
+
+-<PatternLayout>
+
+<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+
+</PatternLayout>
+
+<!-- set file size policy -->
+
+
+
+-<Policies>
+
+<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+
+<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+
+
+</Policies>
+
+<DefaultRolloverStrategy max="2500"/>
+
+</RollingFile>
+
+</Appenders>
+
+
+-<Loggers>
+
+
+-<Logger name="Dialog.Designer.TraceWriter" additivity="false" level="debug">
+
+<appender-ref ref="trace"/>
+> 
+<!--	<appender-ref ref="console-log"/>-->
+
+
+</Logger>
+
+
+-<Logger name="Arith" additivity="false" level="debug">
+
+<appender-ref ref="Arith"/>
+
+<appender-ref ref="console-log"/>
+
+</Logger>
+
+
+-<Logger name="Dialog.Designer.ReportWriter" additivity="false" level="debug">
+
+<appender-ref ref="report"/>
+
+<!--	<appender-ref ref="console-log"/>-->
+
+
+</Logger>
+
+
+-<Root additivity="false" level="debug">
+
+<!-- <AppenderRef ref="console-log"/>-->
+
+
+</Root>
+
+</Loggers>
+
+</Configuration>
