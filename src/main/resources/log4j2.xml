@@ -1,165 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Configuration status="WARN">
+	-
+	<Properties>
 
+		<Property name="log-path">D:\Logs/</Property>
 
--<Properties>
+	</Properties>
+	-
+	<Appenders>
 
-<Property name="log-path">D:\Logs/</Property>
+		<!-- console appender -->
+		-
+		<Console name="console-log" target="SYSTEM_OUT">
 
-</Properties>
+			<PatternLayout pattern="%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n" />
 
+		</Console>
 
--<Appenders>
+		<!-- file appender -->
+		-
+		<RollingFile name="trace" filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/trace.log">
 
-<!-- console appender -->
+			<!-- log pattern -->
+			-
+			<PatternLayout>
 
+				<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
 
+			</PatternLayout>
 
--<Console name="console-log" target="SYSTEM_OUT">
+			<!-- set file size policy -->
+			-
+			<Policies>
 
-<PatternLayout pattern="%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n"/>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1" />
 
-</Console>
+				<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
 
-<!-- file appender -->
 
+			</Policies>
 
+			<DefaultRolloverStrategy max="500" />
 
--<RollingFile name="trace" filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/trace.log">
+		</RollingFile>
+		-
+		<RollingFile name="report" filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/trace.log">
 
-<!-- log pattern -->
+			<!-- log pattern -->
+			-
+			<PatternLayout>
 
+				<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
 
+			</PatternLayout>
 
--<PatternLayout>
+			<!-- set file size policy -->
+			-
+			<Policies>
 
-<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1" />
 
-</PatternLayout>
+				<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
 
-<!-- set file size policy -->
 
+			</Policies>
 
+			<DefaultRolloverStrategy max="500" />
 
--<Policies>
+		</RollingFile>
 
-<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+		<!-- file appender -->
+		-
+		<RollingFile name="Arith" filePattern="${log-path}/Arith-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/Arith.log">
 
-<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+			<!-- log pattern -->
+			-
+			<PatternLayout>
 
+				<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
 
-</Policies>
+			</PatternLayout>
 
-<DefaultRolloverStrategy max="500"/>
+			<!-- set file size policy -->
+			-
+			<Policies>
 
-</RollingFile>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1" />
 
+				<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
 
--<RollingFile name="report" filePattern="${log-path}/trace-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/trace.log">
 
-<!-- log pattern -->
+			</Policies>
 
+			<DefaultRolloverStrategy max="2500" />
 
+		</RollingFile>
+		-
+		<RollingFile name="Controllernext" filePattern="${log-path}/Controllernext-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/Controllernext.log">
 
--<PatternLayout>
+			<!-- log pattern -->
+			-
+			<PatternLayout>
 
-<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+				<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
 
-</PatternLayout>
+			</PatternLayout>
 
-<!-- set file size policy -->
+			<!-- set file size policy -->
+			-
+			<Policies>
 
+				<TimeBasedTriggeringPolicy modulate="true" interval="1" />
 
+				<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
 
--<Policies>
 
-<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+			</Policies>
 
-<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
+			<DefaultRolloverStrategy max="2500" />
 
+		</RollingFile>
 
-</Policies>
+	</Appenders>
+	-
+	<Loggers>
+		-
+		<Logger name="Dialog.Designer.TraceWriter" additivity="false" level="debug">
 
-<DefaultRolloverStrategy max="500"/>
+			<appender-ref ref="trace" />
+			>
+			<!--	<appender-ref ref="console-log"/>-->
 
-</RollingFile>
 
-<!-- file appender -->
+		</Logger>
+		-
+		<Logger name="Arith" additivity="false" level="debug">
 
+			<appender-ref ref="Arith" />
 
+			<appender-ref ref="console-log" />
 
--<RollingFile name="Arith" filePattern="${log-path}/Arith-%d{yyyy-MM-dd-HH}.log" fileName="${log-path}/Arith.log">
+		</Logger>
+		-
+		<Logger name="Controllernext" additivity="false" level="debug">
 
-<!-- log pattern -->
+			<appender-ref ref="Controllernext" />
 
+			<appender-ref ref="console-log" />
 
+		</Logger>
+		-
+		<Logger name="Dialog.Designer.ReportWriter" additivity="false" level="debug">
 
--<PatternLayout>
+			<appender-ref ref="report" />
 
-<pattern>%d{dd/MM/yyyy HH:mm:ss:SSS} %5p - %m%n</pattern>
+			<!--	<appender-ref ref="console-log"/>-->
 
-</PatternLayout>
 
-<!-- set file size policy -->
+		</Logger>
+		-
+		<Root additivity="false" level="debug">
 
+			<!-- <AppenderRef ref="console-log"/>-->
 
 
--<Policies>
+		</Root>
 
-<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
-
-<!-- <SizeBasedTriggeringPolicy size="10 MB" /> -->
-
-
-</Policies>
-
-<DefaultRolloverStrategy max="2500"/>
-
-</RollingFile>
-
-</Appenders>
-
-
--<Loggers>
-
-
--<Logger name="Dialog.Designer.TraceWriter" additivity="false" level="debug">
-
-<appender-ref ref="trace"/>
-> 
-<!--	<appender-ref ref="console-log"/>-->
-
-
-</Logger>
-
-
--<Logger name="Arith" additivity="false" level="debug">
-
-<appender-ref ref="Arith"/>
-
-<appender-ref ref="console-log"/>
-
-</Logger>
-
-
--<Logger name="Dialog.Designer.ReportWriter" additivity="false" level="debug">
-
-<appender-ref ref="report"/>
-
-<!--	<appender-ref ref="console-log"/>-->
-
-
-</Logger>
-
-
--<Root additivity="false" level="debug">
-
-<!-- <AppenderRef ref="console-log"/>-->
-
-
-</Root>
-
-</Loggers>
+	</Loggers>
 
 </Configuration>
