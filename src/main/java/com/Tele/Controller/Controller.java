@@ -64,29 +64,28 @@ public class Controller {
 		return new ResponseEntity<>(requestParams, HttpStatus.OK);
 
 	}
+
 	@Value("${FilePath}")
 	private String fileurl;
+
 	@RequestMapping(value = "loadProperty", method = RequestMethod.GET)
 
 	public ResponseEntity<?> loadProperty(@RequestParam Map<String, String> requestParams) throws Exception {
 		System.out.println(requestParams);
 		System.out.println(fileurl);
 //		String status = "Success";
-		 Properties prob=new Properties();
+		Properties prob = new Properties();
 		try {
-			  FileInputStream file=new FileInputStream(fileurl);
-			  prob.load(file);
-			
+			FileInputStream file = new FileInputStream(fileurl);
+			prob.load(file);
+
 		} catch (Exception e) {
 			System.out.println(e);
 			System.out.println("Exception occured");
 		}
 //		requestParams.put("status", status);
 //		requestParams.put("result", Calculation + "");
-	return new ResponseEntity<>(prob, HttpStatus.OK);
+		return new ResponseEntity<>(prob, HttpStatus.OK);
 
 	}
 }
-
-
-
